@@ -8,13 +8,160 @@ body {
     margin: 0;
 }
 
+/* Navbar styles */
+.vertical-navbar {
+    background-color: #4a4a4a; /* Darker grey */
+    color: white;
+    padding: 15px 0;
+    width: 230px; /* Fixed width for the vertical navbar */
+    min-height: 100vh; /* Full height */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow on the right */
+    border-right: 1px solid #666; /* Grey border */
+    display: flex;
+    flex-direction: column;
+    position: fixed; /* Fixed position on the left */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it's on top */
+    transition: width 0.3s ease; /* Smooth transition for collapse/expand */
+}
+
+.vertical-navbar.collapsed {
+    width: 60px; /* Collapsed width */
+}
+
+.navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 15px 15px;
+    border-bottom: 1px solid #666; /* Separator */
+    margin-bottom: 15px;
+}
+
+.vertical-navbar .navbar-brand {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow when collapsed */
+    text-overflow: ellipsis; /* Add ellipsis when text overflows */
+    padding-left: 15px; /* Add padding to align with links */
+}
+
+.vertical-navbar.collapsed .navbar-brand {
+    display: none; /* Hide brand when collapsed */
+}
+
+.vertical-navbar.collapsed .navbar-header {
+    justify-content: center; /* Center toggler when brand is hidden */
+    padding: 0 0 15px 0; /* Adjust padding */
+}
+
+.vertical-navbar .navbar-toggler {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.vertical-navbar .navbar-links {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow links to take available space */
+}
+
+.vertical-navbar.collapsed .navbar-links {
+    display: none; /* Hide links when collapsed */
+}
+
+.vertical-navbar .navbar-links li a { /* Target the anchor tags within list items */
+    color: #e0e0e0; /* Lighter grey for links */
+    text-decoration: none;
+    padding: 12px 15px; /* Increased padding for better click area */
+    display: block; /* Make the whole area clickable */
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vertical-navbar .navbar-links li a:hover {
+    background-color: #5a5a5a; /* Slightly lighter grey on hover */
+    color: white; /* White text on hover */
+}
+
+.vertical-navbar .nav-link:hover {
+    background-color: #666;
+}
+
+/* Adjust main content wrapper to make space for the vertical navbar */
 .main-content-wrapper {
     display: flex;
-    gap: 20px; /* Space between columns */
-    align-items: flex-start; /* Align items to the top */
-    max-width: 1200px; /* Max width for the entire layout */
+    gap: 20px;
+    align-items: flex-start;
+    max-width: 1200px;
     width: 100%;
     padding: 20px;
+    margin-left: 200px; /* Space for the fixed vertical navbar */
+    transition: margin-left 0.3s ease;
+}
+
+.vertical-navbar.collapsed + .main-content-wrapper {
+    margin-left: 60px; /* Adjust margin when navbar is collapsed */
+}
+
+/* Responsive adjustments for the vertical navbar */
+@media (max-width: 768px) {
+    .vertical-navbar {
+        width: 100%;
+        height: auto;
+        min-height: unset;
+        position: relative;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border-right: none;
+        border-bottom: 1px solid #666;
+    }
+
+    .vertical-navbar.collapsed {
+        width: 100%;
+    }
+
+    .vertical-navbar .navbar-header {
+        padding: 10px 20px;
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .vertical-navbar .navbar-brand {
+        display: block;
+    }
+
+    .vertical-navbar .navbar-links {
+        display: none; /* Hidden by default on small screens */
+        padding-bottom: 10px;
+    }
+
+    .vertical-navbar.active .navbar-links {
+        display: flex; /* Show when active */
+    }
+
+    .vertical-navbar .nav-link {
+        margin: 0 20px;
+        text-align: left;
+    }
+
+    .main-content-wrapper {
+        margin-left: 0; /* No left margin on small screens */
+        padding-top: 20px; /* Add some top padding to avoid overlap with navbar */
+    }
 }
 
 .container {
@@ -26,7 +173,7 @@ body {
     flex: 1; /* Allow columns to grow and shrink */
 }
 
-.signature-generator-section {
+.payment-tester-section {
     max-width: 500px; /* Max width for the left column */
 }
 

@@ -58,6 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         40400: "Payment not found."
     };
 
+    // Attach event listener to the Save button
+    const saveButton = document.getElementById('saveButton');
+    if (saveButton) {
+        saveButton.addEventListener('click', saveData);
+    }
+
     // Load saved data on page load
     loadData();
 
@@ -109,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const hashArray = Array.from(new Uint8Array(signatureBuffer));
             const signature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             generatedSignatureOutput.value = signature;
-            saveData();
             return signature;
         } catch (error) {
             console.error("Error generating signature:", error);
@@ -244,5 +249,17 @@ document.addEventListener('DOMContentLoaded', () => {
             channelIdInput.value = data.channelId || '';
             callbackUrlInput.value = data.callbackUrl || '';
         }
+    }
+    const navbarToggler = document.getElementById('navbarToggler');
+    const navbarLinks = document.getElementById('navbarLinks');
+    const verticalNavbar = document.getElementById('verticalNavbar'); // Get the vertical navbar element
+
+    if (navbarToggler && navbarLinks && verticalNavbar) {
+        navbarToggler.addEventListener('click', () => {
+            // Toggle 'collapsed' class for desktop vertical collapse/expand
+            verticalNavbar.classList.toggle('collapsed');
+            // Toggle 'active' class for mobile responsiveness
+            navbarLinks.classList.toggle('active');
+        });
     }
 });

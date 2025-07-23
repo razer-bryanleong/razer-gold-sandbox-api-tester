@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Razer Gold Payment Tester</title>
-    <link rel="stylesheet" href="{{ asset('css/signature-generator.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/payment-tester.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body>
+    @include('components.navbar')
     <div id="loader" class="loader-overlay">
         <div class="loader"></div>
     </div>
     <div class="main-content-wrapper">
-        <div class="container signature-generator-section">
+        <div class="container payment-tester-section">
             <h1>HMAC-SHA256 Signature Generator</h1>
 
             <div class="input-group">
                 <label for="secretKey">Secret Key:</label>
                 <div class="password-input-container">
-                    <input type="password" id="secretKey" value="Ziu61T9xY227aazS530Pk8C5424y663r">
+                    <input type="password" id="secretKey" value="">
                     <span class="toggle-password" id="toggleSecretKey">
                         <i class="fas fa-eye"></i>
                     </span>
@@ -30,12 +31,12 @@
             <h2>Parameters</h2>
             <div class="input-group">
                 <label for="applicationCode">applicationCode:</label>
-                <input type="text" id="applicationCode" value="3f2504e04f8911d39a0c0305e82c3301">
+                <input type="text" id="applicationCode" value="">
                 <p class="description">Unique code for the application.</p>
             </div>
             <div class="input-group">
                 <label for="referenceId">referenceId:</label>
-                <input type="text" id="referenceId" value="TRX1708901">
+                <input type="text" id="referenceId" value="">
                 <p class="description">Unique transaction reference ID.</p>
             </div>
             <div class="input-group">
@@ -45,7 +46,7 @@
             </div>
             <div class="input-group">
                 <label for="description">description:</label>
-                <input type="text" id="description" value="Product A">
+                <input type="text" id="description" value="">
                 <p class="description">Description of the product or transaction.</p>
             </div>
             <div class="input-group">
@@ -55,7 +56,7 @@
             </div>
             <div class="input-group">
                 <label for="amount">amount:</label>
-                <input type="number" id="amount" value="1000">
+                <input type="number" id="amount" value="">
                 <p class="description">Transaction amount.</p>
             </div>
             <div class="input-group">
@@ -79,7 +80,7 @@
             </div>
             <div class="input-group">
                 <label for="customerId">customerId:</label>
-                <input type="text" id="customerId" value="12321144221">
+                <input type="text" id="customerId" value="">
                 <p class="description">Unique identifier for the customer.</p>
             </div>
             <div class="input-group">
@@ -108,6 +109,7 @@
                 </div>
             </div>
             <button id="generateButton">Generate Signature</button>
+            <button id="saveButton">Save Inputs</button>
         </div>
 
         <div class="container payment-tester-section">
@@ -136,6 +138,6 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="{{ asset('js/signature-generator.js') }}"></script>
+    <script src="{{ asset('js/payment-tester.js') }}"></script>
 </body>
 </html>

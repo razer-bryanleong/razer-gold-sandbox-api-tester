@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Razer Gold Payment Query Tester</title>
-    <link rel="stylesheet" href="{{ asset('css/signature-generator.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/payment-tester.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 <body>
+    @include('components.navbar')
     <div id="loader" class="loader-overlay">
         <div class="loader"></div>
     </div>
     <div class="main-content-wrapper">
-        <div class="container signature-generator-section">
+        <div class="container payment-tester-section">
             <h1>HMAC-SHA256 Signature Generator for Payment Query</h1>
 
             <div class="input-group">
@@ -100,5 +101,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('js/payment-query-generator.js') }}"></script>
+    <script src="{{ asset('js/payment-tester.js') }}"></script>
 </body>
 </html>

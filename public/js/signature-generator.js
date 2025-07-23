@@ -38,6 +38,26 @@ document.addEventListener('DOMContentLoaded', () => {
         503: "Service Unavailable - The Razer Gold service is temporarily unavailable.",
     };
 
+    const razerDetailedErrorMessages = {
+        40001: "Required parameter is missing or parameter format is invalid.",
+        40002: "Invalid API Version.",
+        40003: "Invalid Currency Code or not supported.",
+        40004: "Duplicate Reference Id or Currency Code/Pin mismatch with previous transaction.",
+        40005: "Invalid Channel Id.",
+        40006: "Invalid Amount.",
+        40007: "Invalid PIN.",
+        40008: "Invalid Client IP Address.",
+        40009: "The transaction was declined by Razer Gold because of possible fraudulent activity.",
+        40013: "Payment Amount Exceeds channel maximum accepted amount.",
+        40014: "Payment Amount less than channel minimum accepted amount.",
+        40015: "Invalid SubChannelCode.",
+        40101: "Invalid Application Code.",
+        40102: "Unauthorized Server IP Address.",
+        40103: "Invalid Signature.",
+        40104: "Channel Id not permitted.",
+        40400: "Payment not found."
+    };
+
     // Load saved data on page load
     loadData();
 
@@ -153,7 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!response.ok) {
                 console.error("API Error:", responseData);
-                const errorMessage = razerErrorMessages[response.status] || `API Error: ${responseData.message || response.statusText}`;
+                let errorMessage = razerErrorMessages[response.status] || `API Error: ${responseData.message || response.statusText}`;
+
+                if (responseData.code && razerDetailedErrorMessages[responseData.code]) {
+                    errorMessage = `Error ${responseData.code}: ${razerDetailedErrorMessages[responseData.code]}`;
+                } else if (responseData.message) {
+                    errorMessage = `API Error: ${responseData.message}`;
+                }
+
                 toastr.error(errorMessage);
                 paymentUrlOutput.innerHTML = ''; // Clear previous link
             } else {

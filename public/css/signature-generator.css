@@ -180,3 +180,62 @@ input[readonly] {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Styles for Payment Details Output */
+.payment-details-output {
+    background-color: #f8f9fa;
+    border: 1px solid #e2e6ea;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 20px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+    color: #333;
+}
+
+.payment-details-output p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.payment-details-output p:last-child {
+    margin-bottom: 0;
+}
+
+.payment-details-output strong {
+    color: #0056b3;
+    display: inline-block;
+    width: 180px; /* Align labels */
+}
+
+.payment-details-output .no-data {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Payment Status Colors */
+.status-success {
+    color: #28a745; /* Green */
+    font-weight: bold;
+}
+
+.status-incomplete {
+    color: #ffc107; /* Yellow/Orange */
+    font-weight: bold;
+}
+
+.status-expired {
+    color: #dc3545; /* Red */
+    font-weight: bold;
+}
+
+.status-cancelled {
+    color: #6c757d; /* Grey */
+    font-weight: bold;
+}
+
+.status-failure {
+    color: #dc3545; /* Red */
+    font-weight: bold;
+}

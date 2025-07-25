@@ -75,4 +75,17 @@ class RazerPaymentController extends Controller
             return response()->json(['error' => 'An error occurred while contacting the Razer Gold Payment Query API.'], 500);
         }
     }
+    public function generatePinQuerySignature(Request $request)
+    {
+        $secretKey = $request->input('secretKey');
+        $data = $request->input('data');
+
+        if (empty($secretKey) || empty($data)) {
+            return response()->json(['error' => 'Secret Key and data are required.'], 400);
+        }
+
+        $signature = md5($data . $secretKey);
+
+        return response()->json(['signature' => $signature]);
+    }
 }

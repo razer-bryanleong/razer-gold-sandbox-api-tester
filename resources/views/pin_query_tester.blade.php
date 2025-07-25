@@ -55,34 +55,9 @@
                 <p class="description">API version being used.</p>
             </div>
             <div class="input-group">
-                <label for="stateId">stateId:</label>
-                <input type="text" id="stateId" value="">
-                <p class="description">State id refers to present condition of a PIN (Optional).</p>
-            </div>
-            <div class="input-group">
-                <label for="amount">amount:</label>
-                <input type="number" id="amount" value="">
-                <p class="description">Transaction amount (Optional).</p>
-            </div>
-            <div class="input-group">
-                <label for="currencyCode">currencyCode:</label>
-                <select id="currencyCode">
-                    <option value="">Select Currency (Optional)</option>
-                    <option value="MYR">MYR - Malaysian Ringgit</option>
-                    <option value="USD">USD - United States Dollar</option>
-                    <option value="EUR">EUR - Euro</option>
-                    <option value="SGD">SGD - Singapore Dollar</option>
-                    <option value="PHP">PHP - Philippine Peso</option>
-                    <option value="THB">THB - Thai Baht</option>
-                    <option value="IDR">IDR - Indonesian Rupiah</option>
-                    <option value="VND">VND - Vietnamese Dong</option>
-                </select>
-                <p class="description">Currency code for the transaction (Optional).</p>
-            </div>
-            <div class="input-group">
-                <label for="hashType">hashType:</label>
-                <input type="text" id="hashType" value="hmac-sha256" readonly>
-                <p class="description">Hashing algorithm used for signature.</p>
+                <label for="channelId">channelId:</label>
+                <input type="text" id="channelId" value="">
+                <p class="description">The ID of the payment channel.</p>
             </div>
 
             <div class="output-group">

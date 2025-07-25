@@ -16,6 +16,7 @@ Route::get('/pin-query-tester', function () {
     return view('pin_query_tester');
 });
 Route::get('/send-pin-query-proxy', [App\Http\Controllers\RazerPaymentController::class, 'sendPinQueryProxy']);
+Route::post('/generate-pin-query-signature', [App\Http\Controllers\RazerPaymentController::class, 'generatePinQuerySignature']);
 
 Route::get('/payment-query-tester', function () {
     return view('payment_query_tester');

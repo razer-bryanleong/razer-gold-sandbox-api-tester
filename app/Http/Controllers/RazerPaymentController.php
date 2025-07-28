@@ -18,7 +18,7 @@ class RazerPaymentController extends Controller
 
     public function sendPaymentProxy(Request $request)
     {
-        $apiUrl = 'https://globalapi.gold-sandbox.razer.com/payout/payments';
+        $apiUrl = $request->header('X-API-URL', 'https://globalapi.gold-sandbox.razer.com/payout/payments');
         $payload = $request->all();
 
         try {
@@ -61,7 +61,7 @@ class RazerPaymentController extends Controller
 
     public function sendPaymentQueryProxy(Request $request)
     {
-        $apiUrl = 'https://globalapi.gold-sandbox.razer.com/payout/payments'; // Corrected as per documentation example
+        $apiUrl = $request->header('X-API-URL', 'https://globalapi.gold-sandbox.razer.com/payout/payments');
         $queryParams = $request->query();
         Log::info('Payment Query Proxy Request Params', $queryParams);
 

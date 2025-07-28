@@ -76,6 +76,14 @@
         <div class="container payment-tester-section">
             <h1>Razer Gold Payment Query Tester</h1>
             <div class="input-group">
+                <label for="environmentSelect">Post to Environment:</label>
+                <select id="environmentSelect">
+                    <option value="sandbox">Sandbox</option>
+                    <option value="dev">Dev</option>
+                </select>
+                <p class="description">Select the environment for the payment API.</p>
+            </div>
+            <div class="input-group">
                 <label for="paymentQueryApiUrl">Razer Gold Payment Query API URL:</label>
                 <input type="text" id="paymentQueryApiUrl" value="https://globalapi.gold-sandbox.razer.com/payout/payments" readonly>
                 <p class="description">The endpoint for Razer Gold Payment Query API.</p>

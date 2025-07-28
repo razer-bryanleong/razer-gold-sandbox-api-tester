@@ -118,6 +118,9 @@ $(document).ready(function() {
             url: '/proxy-payment-query', // This endpoint will be created in web.php and handled by RazerPaymentController
             method: 'GET', // Payment Query uses GET method
             data: requestData, // Send parameters as data for GET request
+            headers: {
+                'X-API-URL': paymentQueryApiUrl
+            },
             success: function(response) {
                 $('#responsePayload').val(JSON.stringify(response, null, 2));
                 toastr.success('Payment Query request sent successfully!');
@@ -170,6 +173,20 @@ $(document).ready(function() {
 
     // Load data on page load
     loadData();
+ 
+    const environmentSelect = $('#environmentSelect');
+    const paymentQueryApiUrlInput = $('#paymentQueryApiUrl');
+    const apiUrls = {
+        sandbox: 'https://globalapi.gold-sandbox.razer.com/payout/payments',
+        dev: 'https://globalapi.zgold-dev.razer.com/payout/payments'
+    };
+ 
+    if (environmentSelect.length) {
+        environmentSelect.on('change', function() {
+            const selectedEnv = $(this).val();
+            paymentQueryApiUrlInput.val(apiUrls[selectedEnv]);
+        });
+    }
 
     function displayPaymentDetails(data) {
         const paymentDetailsOutput = $('#paymentDetailsOutput');

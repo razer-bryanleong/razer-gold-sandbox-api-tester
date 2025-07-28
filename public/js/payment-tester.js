@@ -23,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const generateButton = document.getElementById('generateButton');
     const loader = document.getElementById('loader');
 
+   const environmentSelect = document.getElementById('environmentSelect');
+
+   const apiUrls = {
+       sandbox: 'https://globalapi.gold-sandbox.razer.com/payout/payments',
+       dev: 'https://globalapi.zgold-dev.razer.com/payout/payments'
+   };
+
+   if (environmentSelect) {
+       environmentSelect.addEventListener('change', (event) => {
+           const selectedEnv = event.target.value;
+           paymentApiUrlInput.value = apiUrls[selectedEnv];
+       });
+   }
+
     // Toastr options
     toastr.options = {
         "closeButton": true,
@@ -168,7 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'X-API-URL': paymentApiUrlInput.value
                 },
                 body: formBody
             });

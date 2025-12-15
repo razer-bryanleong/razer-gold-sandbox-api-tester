@@ -9,5 +9,6 @@
         <li><a href="/payment-tester">Payment Tester</a></li>
         <li><a href="/payment-query-tester">Payment Query Tester</a></li>
         <li><a href="/pin-query-tester">PIN Query Tester</a></li>
+        <li><a href="/payout-payment-result-tester">Payout Payment Result Tester</a></li>
     </ul>
 </nav>

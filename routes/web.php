@@ -24,3 +24,7 @@ Route::get('/payment-query-tester', function () {
 
 Route::get('/proxy-payment-query', [App\Http\Controllers\RazerPaymentController::class, 'sendPaymentQueryProxy']);
 Route::post('/generate-signature', [App\Http\Controllers\RazerPaymentController::class, 'generateSignature']);
+
+Route::get('/payout-payment-result-tester', function () {
+    return view('payout_payment_result_tester');
+});

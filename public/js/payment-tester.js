@@ -89,18 +89,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add an event listener to the referenceId input to dynamically update the returnUrl
+
+
+    const autoGenerateReturnUrlCheckbox = document.getElementById('autoGenerateReturnUrl');
+
+    const updateReturnUrlInputState = () => {
+        if (autoGenerateReturnUrlCheckbox.checked) {
+            returnUrlInput.value = `http://127.0.0.1:8000/result?referenceId=${referenceIdInput.value}`;
+            returnUrlInput.setAttribute('readonly', true);
+        } else {
+            returnUrlInput.removeAttribute('readonly');
+        }
+    };
+
+    // Initial state setup
+    updateReturnUrlInputState();
+
+    // Event listeners
+    autoGenerateReturnUrlCheckbox.addEventListener('change', updateReturnUrlInputState);
     referenceIdInput.addEventListener('input', () => {
-        returnUrlInput.value = `http://127.0.0.1:8000/result?referenceId=${referenceIdInput.value}`;
+        if (autoGenerateReturnUrlCheckbox.checked) {
+            updateReturnUrlInputState();
+        }
     });
 
     async function generateSignature() {
         const secretKey = secretKeyInput.value;
+        const returnUrlValue = autoGenerateReturnUrlCheckbox.checked
+            ? `http://127.0.0.1:8000/result?referenceId=${referenceIdInput.value}`
+            : returnUrlInput.value;
+
         const params = {
             applicationCode: applicationCodeInput.value,
             referenceId: referenceIdInput.value,
             version: versionInput.value,
             description: descriptionInput.value,
-            returnUrl: `http://127.0.0.1:8000/result?referenceId=${referenceIdInput.value}`,
+            returnUrl: returnUrlValue,
             amount: amountInput.value,
             currencyCode: currencyCodeInput.value,
             hashType: hashTypeInput.value,

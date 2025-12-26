@@ -51,7 +51,11 @@
             </div>
             <div class="input-group">
                 <label for="returnUrl">returnUrl:</label>
-                <input type="text" id="returnUrl" value="http://127.0.0.1:8000/result?referenceId=TRX1708901" readonly>
+                <input type="text" id="returnUrl" value="">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="autoGenerateReturnUrl" checked>
+                    <label for="autoGenerateReturnUrl">Auto-generate based on Reference ID</label>
+                </div>
                 <p class="description">URL to redirect after transaction.</p>
             </div>
             <div class="input-group">
